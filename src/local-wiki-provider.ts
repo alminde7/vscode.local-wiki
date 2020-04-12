@@ -11,6 +11,10 @@ export class LocalWikiProvider implements vscode.TreeDataProvider<WikiItem> {
         }
     }
 
+    public refresh(): void {
+        return;
+    }
+
     getTreeItem(element: WikiItem): vscode.TreeItem | Thenable<vscode.TreeItem> {
         return element;
     }
@@ -49,10 +53,12 @@ export class WikiItem extends vscode.TreeItem {
     
     constructor(resourceLocation: string, label:string, ) {
         super(label, vscode.TreeItemCollapsibleState.None);
+
+        this.resourceUri = vscode.Uri.file(resourceLocation);
         this.command = {
             command: "localWiki.openWikiResource",
             title: "Open file",
-            arguments: [vscode.Uri.file(resourceLocation)]
+            arguments: [this.resourceUri]
         }
     }
 }
@@ -66,6 +72,8 @@ export class LocalWikiExtension {
         this.context.subscriptions.push(vscode.window.registerTreeDataProvider('localWiki', localWikiProvider));
 
         vscode.commands.registerCommand('localWiki.openWikiResource', resource => this.openResource(resource));
+        vscode.commands.registerCommand('localWiki.addWikiResource', resource => true);
+        vscode.commands.registerCommand('localWiki.refreshWikiResource', resource => true);
     }
 
     private openResource(resource: vscode.Uri): void {

@@ -26,6 +26,14 @@
 			{
 				"command": "localWiki.openWikiResource",
 				"title": "Open file"
+			},
+			{
+				"command": "localWiki.addWikiResource",
+				"title": "Add file"
+			},
+			{
+				"command": "localWiki.refreshWikiResource",
+				"title": "Refresh"
 			}
 		]
 	},
