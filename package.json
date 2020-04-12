@@ -10,18 +10,24 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onView:local-wiki"
+		"onView:localWiki"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"views": {
 			"explorer": [
 				{
-					"id": "local-wiki",
+					"id": "localWiki",
 					"name": "Local Wiki"
 				}
 			]
-		}
+		},
+		"commands":[
+			{
+				"command": "localWiki.openWikiResource",
+				"title": "Open file"
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
